@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  dynasty8-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: dynasty8
+    ports:
+      - "5432:5432"
+    volumes:
+      - dynasty8-db-data:/var/lib/postgresql/data
+
+  # Debug
+  postgrest-server:
+    image: postgrest/postgrest
+    depends_on:
+      - dynasty8-db
+    ports:
+      - "3030:3000"
+    environment:
+      PGRST_DB_URI: postgres://postgres:user@dynasty8-db:5432/dynasty8
+      PGRST_DB_SCHEMA: public
+      PGRST_DB_ANON_ROLE: postgres
+
+volumes:
+  dynasty8-db-data:

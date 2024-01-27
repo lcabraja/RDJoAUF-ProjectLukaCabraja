@@ -1,0 +1,13 @@
+### Login Admin
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "Zvjerka"
+}
+> {% client.global.set("authToken", response.body.token) %}
+
+### Fetch Users Admin
+GET http://localhost:8080/api/v1/user/all
+Authorization: Bearer {{authToken}}

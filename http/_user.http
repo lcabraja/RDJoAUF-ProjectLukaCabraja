@@ -1,0 +1,86 @@
+### Register User
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "username": "{{username}}",
+    "password": "{{password1}}",
+    "firstName": "Mislav",
+    "lastName": "Marinović",
+    "role": "USER",
+    "language": "hr"
+}
+> {% client.global.set("authToken", response.body.token) %}
+
+### Login User
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password1}}"
+}
+> {% client.global.set("authToken", response.body.token) %}
+
+### Subsequent Request Using Token
+GET http://localhost:8080/api/v1/user/get?username={{username}}
+Authorization: Bearer {{authToken}}
+
+###
+GET http://localhost:8080/api/v1/user/all
+Authorization: Bearer {{authToken}}
+
+### Change User Password
+PUT http://localhost:8080/api/v1/user/change-password
+Authorization: Bearer {{authToken}}
+Content-Type: application/x-www-form-urlencoded
+
+password={{password2}}
+
+### Attemped login with previous Password
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password1}}"
+}
+
+### Login with new Password
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password2}}"
+}
+> {% client.global.set("authToken", response.body.token) %}
+
+### Create Portfolio 1
+POST http://localhost:8080/api/v1/portfolio/create
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Investment Portfolio",
+  "user": {
+    "id": 1
+  },
+  "apartments": [
+    {
+      "name": "Apartment A",
+      "location": "Downtown",
+      "value": 100000
+    },
+    {
+      "name": "Apartment B",
+      "location": "Uptown",
+      "value": 150000
+    }
+  ]
+}
+
+
+### Delete User
+#DELETE http://localhost:8080/api/v1/user/delete
+#Authorization: Bearer {{authToken}}

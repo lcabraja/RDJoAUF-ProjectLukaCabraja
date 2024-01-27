@@ -1,0 +1,13 @@
+{
+    "welcome_message": "Pozdrav, Brate",
+    "logout": "Ćaos",
+    "login": "Bokić",
+    "home": "Doma",
+    "language": "Spika",
+    "navbar": {
+      "home": "Doma",
+      "about": "O nama",
+      "contact": "Cimni me"
+    }
+  }
+  

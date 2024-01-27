@@ -1,0 +1,198 @@
+### Register User
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "username": "{{devuser}}",
+    "password": "{{password1}}",
+    "firstName": "Luka",
+    "lastName": "Čabraja",
+    "role": "USER",
+    "language": "hr"
+}
+> {%
+    client.global.set("authToken", response.body.token)
+%}
+
+### Create Portfolio 1
+POST http://localhost:8080/api/v1/portfolio/create
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Portfolio 1",
+  "apartments": []
+}
+> {%
+    client.global.set("portfolioId", response.body.id)
+%}
+
+### Fill Portfolio 1 - Vinewood Blvd
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Vinewood Blvd Apartment",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "Vinewood Blvd Apartment description"
+}
+
+### Fill Portfolio 1 - Grove Street
+
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Grove Street Apartment",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "Grove Street Apartment description"
+}
+
+### Fill Portfolio 1 - Eclipse Blvd
+
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Eclipse Blvd Apartment",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "Eclipse Blvd Apartment description"
+}
+
+### Fill Portfolio 1 - Mirror Park Blvd
+
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Mirror Park Blvd Apartment",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "Mirror Park Blvd Apartment description"
+}
+
+### Fill Portfolio 1 - Portola Drive
+
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Portola Drive Apartment",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "Portola Drive Apartment description"
+}
+
+### Get Portfolio 1
+GET http://localhost:8080/api/v1/portfolio/get?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Create Portfolio 2
+POST http://localhost:8080/api/v1/portfolio/create
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Portfolio 2",
+  "apartments": []
+}
+> {%
+    client.global.set("portfolioId", response.body.id)
+%}
+
+### Fill Portfolio 2 - New Apartment 1
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "New Apartment 1",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "New Apartment 1 description"
+}
+
+### Fill Portfolio 2 - New Apartment 2
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "New Apartment 2",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "New Apartment 2 description"
+}
+
+### Fill Portfolio 2 - New Apartment 3
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "New Apartment 3",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "New Apartment 3 description"
+}
+
+### Fill Portfolio 2 - New Apartment 4
+POST http://localhost:8080/api/v1/apartment/create?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "New Apartment 4",
+  "price": 100000.0,
+  "date": "2019-01-01",
+  "description": "New Apartment 4 description"
+}
+> {%
+    client.global.set("apartmentId", response.body.id)
+%}
+
+### Edit Portoflio 2
+PUT http://localhost:8080/api/v1/portfolio/update
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "id": {{portfolioId}},
+  "name": "Porto Morto"
+}
+
+### Edit Apartment {{apartmentId}}
+PUT http://localhost:8080/api/v1/apartment/update
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "id": {{apartmentId}},
+  "name": "Glastonbury",
+  "price": 420.69,
+  "date": "2019-01-01T00:00:00.000+00:00",
+  "description": "Newer Apartment 4 description"
+}
+
+### Get Portfolio 2
+GET http://localhost:8080/api/v1/apartment/get?apartmentId=1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Delete Apartment {{apartmentId}}
+DELETE http://localhost:8080/api/v1/apartment/delete?apartmentId={{apartmentId}}
+Authorization: Bearer {{authToken}}}
+
+### Get Portfolio 2
+GET http://localhost:8080/api/v1/portfolio/get?portfolioId={{portfolioId}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}

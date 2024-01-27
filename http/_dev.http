@@ -1,0 +1,20 @@
+### Validate without token
+GET http://localhost:8080/api/v1/auth/valid
+
+### Register User
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "username": "{{devuser}}",
+    "password": "{{password1}}",
+    "firstName": "Mislav",
+    "lastName": "Marinović",
+    "role": "USER",
+    "language": "hr"
+}
+> {% client.global.set("authToken", response.body.token) %}
+
+### Validate with token
+GET http://localhost:8080/api/v1/auth/valid
+Authorization: Bearer {{authToken}}

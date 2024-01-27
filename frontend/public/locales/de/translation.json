@@ -1,0 +1,13 @@
+{
+    "welcome_message": "Willkommen zu unserer Anwendung",
+    "logout": "Abmelden",
+    "login": "Anmelden",
+    "home": "Startseite",
+    "language": "Sprache",
+    "navbar": {
+      "home": "Startseite",
+      "about": "Über uns",
+      "contact": "Kontakt"
+    }
+  }
+  
